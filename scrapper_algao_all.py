@@ -38,8 +38,13 @@ mails = []
 
 
 for f in range(len(members_urls)):
-    #page of memeber f
-    response_member = requests.get(members_urls[f])
+    #Delayer of requestes to avoid problems
+    t0 = time.time()
+    response_member = requests.get(names_urls[f])
+    response_delay = time.time() - t0
+    print(response_delay)
+    print("sec")
+    time.sleep(response_delay)
     member_html = BeautifulSoup(response_member.text, 'html.parser')
     #all links of member page f
     member_html_links = member_html.find_all('a')
